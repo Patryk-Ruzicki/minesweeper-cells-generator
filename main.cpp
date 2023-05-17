@@ -7,7 +7,8 @@ int main()
     
     srand(time(NULL));
     
-    int bombPosY, bombPosX, boardX = 12, boardY = 12, bombsAmount = 20, random;
+    int bombPosY, bombPosX, bombsAmount = 20, random;
+    const int boardX = 12, boardY = 12;
     
     int testXY[boardY][boardX] = {};
     
@@ -19,16 +20,13 @@ int main()
         if(testXY[bombPosY][bombPosX] < 10){
             
             //set increment around the bomb
-            
-            testXY[bombPosY][bombPosX] = 88;
-            
-            testXY[bombPosY][bombPosX-1] += 1;
-            testXY[bombPosY][bombPosX+1] += 1;
-            
             for(int i = -1; i < 2; i++){
                 testXY[bombPosY-1][bombPosX+i] += 1;
+                testXY[bombPosY][bombPosX+i] += 1;
                 testXY[bombPosY+1][bombPosX+i] += 1;
             }
+            testXY[bombPosY][bombPosX] = 88;
+            
             bombsAmount--;
         }
         
